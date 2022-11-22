@@ -1,4 +1,4 @@
-const cloudinary = require("cloudinary").v2;
+const cloudinary = require("../utils/cloudinary");
 const { Category } = require("../models");
 const createError = require("../utils/createError");
 
@@ -9,7 +9,7 @@ exports.addCategory = async (
   nightLifeFile
 ) => {
   try {
-    const attractionLink = await cloudinary.uploader.upload(
+    const attractionLink = await cloudinary.upload(
       attractionFile,
       (error, result) => {
         if (error) {
@@ -18,7 +18,7 @@ exports.addCategory = async (
         return result.secure_url;
       }
     );
-    const restaurantLink = await cloudinary.uploader.upload(
+    const restaurantLink = await cloudinary.upload(
       restaurantFile,
       (error, result) => {
         if (error) {
@@ -27,7 +27,7 @@ exports.addCategory = async (
         return result.secure_url;
       }
     );
-    const streetFoodLink = await cloudinary.uploader.upload(
+    const streetFoodLink = await cloudinary.upload(
       streetFoodFile,
       (error, result) => {
         if (error) {
@@ -36,7 +36,7 @@ exports.addCategory = async (
         return result.secure_url;
       }
     );
-    const nightLifeLink = await cloudinary.uploader.upload(
+    const nightLifeLink = await cloudinary.upload(
       nightLifeFile,
       (error, result) => {
         if (error) {
@@ -53,7 +53,7 @@ exports.addCategory = async (
       { name: "NightLife", coverPic: nightLifeLink.secure_url },
     ]);
   } catch (err) {
-    // console.log(err);
+    console.log(err);
     createError("Invalid credential", 400);
   }
 };
