@@ -9,43 +9,11 @@ exports.addCategory = async (
   nightLifeFile
 ) => {
   try {
-    const attractionLink = await cloudinary.upload(
-      attractionFile,
-      (error, result) => {
-        if (error) {
-          return console.log(error);
-        }
-        return result.secure_url;
-      }
-    );
-    const restaurantLink = await cloudinary.upload(
-      restaurantFile,
-      (error, result) => {
-        if (error) {
-          return console.log(error);
-        }
-        return result.secure_url;
-      }
-    );
-    const streetFoodLink = await cloudinary.upload(
-      streetFoodFile,
-      (error, result) => {
-        if (error) {
-          return console.log(error);
-        }
-        return result.secure_url;
-      }
-    );
-    const nightLifeLink = await cloudinary.upload(
-      nightLifeFile,
-      (error, result) => {
-        if (error) {
-          return console.log(error);
-        }
-        return result.secure_url;
-      }
-    );
-
+    const attractionLink = await cloudinary.upload(attractionFile);
+    const restaurantLink = await cloudinary.upload(restaurantFile);
+    const streetFoodLink = await cloudinary.upload(streetFoodFile);
+    const nightLifeLink = await cloudinary.upload(nightLifeFile);
+    console.log(attractionLink);
     const categories = await Category.bulkCreate([
       { name: "Attractions", coverPic: attractionLink.secure_url },
       { name: "Restaurant & Cafe", coverPic: restaurantLink.secure_url },
