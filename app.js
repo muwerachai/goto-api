@@ -11,6 +11,8 @@ const authenticateMiddleware = require("./middlewares/authenticate");
 const authRoute = require("./routes/authRoute");
 const userRoute = require("./routes/userRoute");
 const homeRoute = require("./routes/homeRoute");
+const placeRoute = require("./routes/placeRoute");
+
 
 const { addProvince } = require("./service/provinceService");
 const { addCategory } = require("./service/categoryService");
@@ -39,6 +41,8 @@ if (process.env.NODE_ENV === 'DEVELOPMENT') {
 
 app.use("/user", userRoute);
 app.use("/auth", authRoute);
+app.use("/place", authenticateMiddleware, placeRoute);
+
 // app.use("/", authenticateMiddleware, homeRoute);
 
 
